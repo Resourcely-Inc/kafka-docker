@@ -21,8 +21,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
       with:
-        token: ${{ secrets.GH_ACCESS_TOKEN }}
-        repository: Resourcely-Inc/kafka-docker
         ref: ${{ inputs.sha }}
         path: kafka-docker
     - name: Build Docker image
