@@ -18,6 +18,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      with:
+        token: ${{ secrets.GH_ACCESS_TOKEN }}
+        repository: Resourcely-Inc/kafka-docker
+        ref: ${{ inputs.sha }}
+        path: .
     - name: Build Docker image
       run: |
         docker build -t $IMAGE_NAME_CLI .
