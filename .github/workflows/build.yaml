@@ -7,7 +7,7 @@ on:
         description: 'SHA or branch to deploy'
         required: true
         type: string
-        default: 'main'
+        default: 'master'
 env:
   IMAGE_NAME_CLI: ghcr.io/resourcely-inc/kafka:for_hermetic_tests
 
@@ -18,9 +18,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      with:
+        ref: ${{ inputs.sha }}
+        path: kafka-docker
     - name: Build Docker image
       run: |
-        docker build -t $IMAGE_NAME_CLI .
+        docker build -t $IMAGE_NAME_CLI kafka-docker
         docker images # for debugging purposes
 
     - name: Login to Github Container Registry
