@@ -24,10 +24,10 @@ jobs:
         token: ${{ secrets.GH_ACCESS_TOKEN }}
         repository: Resourcely-Inc/kafka-docker
         ref: ${{ inputs.sha }}
-        path: .
+        path: kafka-docker
     - name: Build Docker image
       run: |
-        docker build -t $IMAGE_NAME_CLI .
+        docker build -t $IMAGE_NAME_CLI kafka-docker
         docker images # for debugging purposes
 
     - name: Login to Github Container Registry
